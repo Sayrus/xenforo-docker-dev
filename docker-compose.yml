@@ -16,6 +16,7 @@ services:
     build: images/php
     volumes:
       - ./xenforo:/var/www/xenforo
+      - ./config/config.php:/var/www/xenforo/src/config.php
 
   db:
     image: mysql
