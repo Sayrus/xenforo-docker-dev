@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 RUN apt-get update -y && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev
 
