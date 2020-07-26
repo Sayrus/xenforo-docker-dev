@@ -13,5 +13,11 @@ fi
 
 echo "Enabling $1 in $XENFORO_FOLDER"
 
-ln -Tsf "$1/src" "$XENFORO_FOLDER/src/addons/$(basename "$1")"
-ln -Tsf "$1/js" "$XENFORO_FOLDER/js/$(basename "$1")"
+SRC_DESTINATION_FOLDER="$XENFORO_FOLDER/src/addons/"
+SRC_REALPATH=$(realpath --relative-to="$SRC_DESTINATION_FOLDER" "$1/src")
+
+JS_DESTINATION_FOLDER="$XENFORO_FOLDER/js/"
+JS_REALPATH=$(realpath --relative-to="$JS_DESTINATION_FOLDER" "$1/js")
+
+ln -Tsf "$SRC_REALPATH" "$SRC_DESTINATION_FOLDER/$(basename "$1")"
+ln -Tsf "$JS_REALPATH" "$JS_DESTINATION_FOLDER/$(basename "$1")"
