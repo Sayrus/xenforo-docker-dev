@@ -1,5 +1,6 @@
 #!/bin/sh
 
+AUTHOR="Sayrus"
 XENFORO_FOLDER="xenforo"
 
 if [ "$#" -ne 1 ]; then
@@ -13,11 +14,12 @@ fi
 
 echo "Enabling $1 in $XENFORO_FOLDER"
 
-SRC_DESTINATION_FOLDER="$XENFORO_FOLDER/src/addons/"
+SRC_DESTINATION_FOLDER="$XENFORO_FOLDER/src/addons/$AUTHOR"
 SRC_REALPATH=$(realpath --relative-to="$SRC_DESTINATION_FOLDER" "$1/src")
 
 JS_DESTINATION_FOLDER="$XENFORO_FOLDER/js/"
 JS_REALPATH=$(realpath --relative-to="$JS_DESTINATION_FOLDER" "$1/js")
 
+mkdir -p "$SRC_DESTINATION_FOLDER"
 ln -Tsf "$SRC_REALPATH" "$SRC_DESTINATION_FOLDER/$(basename "$1")"
 ln -Tsf "$JS_REALPATH" "$JS_DESTINATION_FOLDER/$(basename "$1")"
